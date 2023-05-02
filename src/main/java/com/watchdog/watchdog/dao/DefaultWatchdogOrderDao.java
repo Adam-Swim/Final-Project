@@ -31,8 +31,29 @@ public class DefaultWatchdogOrderDao implements WatchdogOrderDao {
 
   @Override
   public List<Accessory> FetchAccessories(List<String> accessoryIds) {
-    // TODO Auto-generated method stub
-    return null;
+    
+    String sql = "SELECT * FROM accessories WHERE accessory_id IN (:accessoryIds)";
+    MapSqlParameterSource params = new MapSqlParameterSource("accessoryIds", accessoryIds);
+    List<Accessory> accessories = namedParameterJdbcTemplate.query(sql, params, (resultSet, rowNum) -> {
+      Long accessoryPK = resultSet.getLong("accessoryPK");
+      String accessoryId = resultSet.getString("accessory_id");
+      String name = resultSet.getString("name");
+      String manufacturer = resultSet.getString("manufacturer");
+      String description = resultSet.getString("description");
+      BigDecimal price = resultSet.getBigDecimal("price");
+      
+      return Accessory.builder()
+          .accesspryPK(accessoryPK)
+          .accessoryId(accessoryId)
+          .name(name)
+          .manufacturer(manufacturer)
+          .description(description)
+          .price(price)
+          .build();
+    });
+    
+    
+    return accessories;
   }
 
   @Override
@@ -135,8 +156,7 @@ public class DefaultWatchdogOrderDao implements WatchdogOrderDao {
        // @formatter:off
          "INSERT INTO order_details"
          + " (order_id,"
-         + " accessory_id,"
-         + " quantity) "
+         + " accessory_id "
          + "VALUES"
          + " (:orderId,"
          + " :accessoryId";

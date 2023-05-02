@@ -1,5 +1,6 @@
 package com.watchdog.watchdog.entity;
 
+import java.math.BigDecimal;
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,7 +12,7 @@ public class Accessory {
   private String name;
   private String manufacturer;
   private String description;
-  private double price;
+  private BigDecimal price;
   
 
 }
