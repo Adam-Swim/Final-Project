@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import com.watchdog.watchdog.entity.Accessory;
 import com.watchdog.watchdog.entity.Customers;
@@ -92,10 +91,10 @@ public class DefaultWatchdogOrderDao implements WatchdogOrderDao {
    // @formatter:off
     return Order.builder()
         .orderPk(orderPK)
-        .customer(customer)
-        .watchdog(watchdog)
+        .customerId(customer.getCustomerId())
+        .watchdogId(watchdog.getWatchdogId())
+        .totalPrice(price)
         .accessories(accessories)
-        .price(price)
         .build();
     
     // @formatter:on
