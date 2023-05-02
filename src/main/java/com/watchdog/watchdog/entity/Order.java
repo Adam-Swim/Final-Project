@@ -1,5 +1,13 @@
 package com.watchdog.watchdog.entity;
 
-public class Order {
+import lombok.Builder;
+import lombok.Data;
 
+@Data
+@Builder
+public class Order {
+  private Long orderPk;
+  private int customerId;
+  private int watchdogId;
+  private double totalPrice;
 }

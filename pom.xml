@@ -12,7 +12,7 @@
   
   <groupId>com.watchdog</groupId>
   <artifactId>watchdog-orders</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0.1-SNAPSHOT</version>
   
   <name>watchdog-orders</name>
   <description>watchdog-orders</description>
@@ -35,6 +35,11 @@
       <optional>true</optional>
     </dependency>
     
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>

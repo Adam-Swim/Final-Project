@@ -4,3 +4,7 @@ spring:
     username: watchdog
     password: watchdog
     url: jdbc:mysql://localhost:3306/watchdog
+  flyway:
+    locations:
+    - classpath:/test/resources
+
