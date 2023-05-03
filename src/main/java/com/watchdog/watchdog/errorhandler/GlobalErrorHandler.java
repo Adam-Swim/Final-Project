@@ -45,13 +45,13 @@ public class GlobalErrorHandler {
    * @param webRequest
    * @return
    */
-  @ExceptionHandler(ConstraintViolationException.class)
-  @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-  public Map<String, Object> handleConstraintViolationException(
-      ConstraintViolationException e, WebRequest webRequest) {
-    return createExceptionMessage(e, HttpStatus.BAD_REQUEST, webRequest, 
-        LogStatus.MESSAGE_ONLY);
-  }
+//  @ExceptionHandler(ConstraintViolationException.class)
+//  @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+//  public Map<String, Object> handleConstraintViolationException(
+//      ConstraintViolationException e, WebRequest webRequest) {
+//    return createExceptionMessage(e, HttpStatus.BAD_REQUEST, webRequest, 
+//        LogStatus.MESSAGE_ONLY);
+//  }
   
   /**
    * 
@@ -79,7 +79,17 @@ public class GlobalErrorHandler {
     return createExceptionMessage(e, HttpStatus.INTERNAL_SERVER_ERROR, 
         webRequest, LogStatus.STACK_TRACE);
   }
-  
+  /**
+   * 
+   * @param e
+   * @param webRequest
+   * @return
+   */
+  public Map<String, Object> handleAccessoryNotFoundException(
+      AccessoryNotFoundException e, WebRequest webRequest) {
+    return createExceptionMessage(e, HttpStatus.NOT_FOUND,
+        webRequest, LogStatus.MESSAGE_ONLY);
+  }
 /**
  * 
  * @param e

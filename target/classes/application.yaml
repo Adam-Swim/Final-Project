@@ -1,9 +1,10 @@
 
 spring:
-  datasource:
+  datasource: 
+    driver-class-name: com.mysql.cj.jdbc.Driver 
     username: watchdog
     password: watchdog
-    url: jdbc:mysql://localhost:3306/watchdog
+    url: jdbc:mysql://localhost:3306/watchdog?useSSL=false&serverTimezone=UTC
   flyway:
     locations:
     - classpath:/test/resources

@@ -16,6 +16,7 @@ import com.watchdog.watchdog.entity.Customers;
 import com.watchdog.watchdog.entity.Order;
 import com.watchdog.watchdog.entity.Watchdog;
 import com.watchdog.watchdog.entity.WatchdogModel;
+import com.watchdog.watchdog.errorhandler.AccessoryNotFoundException;
 
 @Component
 public class DefaultWatchdogOrderDao implements WatchdogOrderDao {
@@ -52,6 +53,14 @@ public class DefaultWatchdogOrderDao implements WatchdogOrderDao {
           .build();
     });
     
+    
+    if (accessories.size() != accessoryIds.size()) {
+      throw new AccessoryNotFoundException(
+          
+          "One or more accessoryIds not found in the database"
+          
+          );
+    }
     
     return accessories;
   }
