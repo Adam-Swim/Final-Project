@@ -21,6 +21,7 @@ CREATE TABLE watchdogs (
    panel_watts int NOT NULL,
    description varchar(128) NOT NULL,
    price decimal(7,2) NOT NULL,
+   watchdog_model varchar(32) NOT NULL,
    PRIMARY KEY (watchdog_pk)
    );
    

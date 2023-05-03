@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:watchdog;mode=MYSQL
+    dbcp2:
+      driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop 
+logging:
+  level:
+    org.springframework: DEBUG 
+    org.hibernate: DEBUG
+     

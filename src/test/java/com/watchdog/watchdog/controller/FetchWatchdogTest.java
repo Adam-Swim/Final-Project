@@ -26,8 +26,8 @@ import com.watchdog.watchdog.entity.WatchdogModel;
 
 @Sql(
     scripts = {
-        "classpath:/schema.sql",
-        "classpath:/data.sql"
+        "classpath:/watchdog_schema.sql",
+        "classpath:/watchdog_data.sql"
     })
 
 

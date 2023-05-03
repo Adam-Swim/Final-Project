@@ -49,11 +49,8 @@ public interface WatchdogSalesController {
            allowEmptyValue = false, 
            required = false, 
            description = "The model name (i.e., 'POINTER')"),
-       @Parameter(
-           name = "trim", 
-           allowEmptyValue = false, 
-           required = false, 
-           description = "The trim level (i.e., 'SPORT')")
+      
+
      }
      
   )
