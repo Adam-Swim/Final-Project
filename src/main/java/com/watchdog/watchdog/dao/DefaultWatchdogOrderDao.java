@@ -85,8 +85,14 @@ public class DefaultWatchdogOrderDao implements WatchdogOrderDao {
 
   @Override
   public Optional<Watchdog> fetchModel(String watchdogId, WatchdogModel model, int mastHeight, int panelWatts) {
-    String sql = "SELECT * FROM watchdog WHERE watchdog_id = :watchdogId";
-    MapSqlParameterSource params = new MapSqlParameterSource("watchdogId", watchdogId);
+//    String sql = "SELECT * FROM watchdog WHERE watchdog_id = :watchdogId";
+    String sql = "SELECT * FROM watchdog WHERE watchdog_id = :watchdogId AND watchdog_model = :watchdogModel AND mast_height = :mastHeight AND panel_watts = :panelWatts";
+    MapSqlParameterSource params = new MapSqlParameterSource()
+        .addValue("watchdogId", watchdogId)
+        .addValue("watchdogModel", model.toString())
+        .addValue("mastHeight", mastHeight)
+        .addValue("panelWatts", panelWatts);
+    
     try {
       Watchdog watchdog = namedParameterJdbcTemplate.queryForObject(sql, params, (resultSet, rowNum) -> {
         Long watchdogPK = resultSet.getLong("watchdogPK");
@@ -95,7 +101,8 @@ public class DefaultWatchdogOrderDao implements WatchdogOrderDao {
         int panelWattsLocal = resultSet.getInt("panel_watts");
         String description = resultSet.getString("description");
         BigDecimal price = resultSet.getBigDecimal("price");
-        return new Watchdog(watchdogPK, id, mastHeightLocal, panelWattsLocal, description, price);
+        WatchdogModel watchdogModel = WatchdogModel.valueOf(resultSet.getString("watchdog_model"));
+        return new Watchdog(watchdogPK, id, mastHeightLocal, panelWattsLocal, description, price, watchdogModel);
       });
     
     return Optional.ofNullable(watchdog);

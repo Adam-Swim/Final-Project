@@ -22,7 +22,6 @@ public class DefaultWatchdogOrderController implements WatchdogOrderController {
 
   @Override
   public Order createOrder(OrderRequest orderRequest) {
-    
     return null;
   }
   

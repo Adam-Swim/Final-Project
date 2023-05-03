@@ -3,12 +3,15 @@ package com.watchdog.watchdog.entity;
 import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
@@ -25,7 +28,20 @@ public class Watchdog {
   private String description;
   private BigDecimal price;
   
-  public Watchdog(Long watchdogPK, String watchdogId, int mastHeight, int panelWatts, String description, BigDecimal price) {
+  @Enumerated(EnumType.STRING)
+  @Column(name = "watchdog_model")
+  private WatchdogModel watchdogModel;
+  
+  public Watchdog(
+      // @formatter:off
+      Long watchdogPK,
+      String watchdogId,
+      int mastHeight,
+      int panelWatts,
+      String description,
+      BigDecimal price,
+      WatchdogModel watchdogModel) {
+      // @formatter:on
     this.watchdogPK = watchdogPK;
     this.watchdogId = watchdogId;
     this.mastHeight = mastHeight;

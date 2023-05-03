@@ -8,4 +8,10 @@ spring:
   flyway:
     locations:
     - classpath:/test/resources
+    
+springdoc:
+  swagger-ui:
+    path: /swagegr-ui.html
+    enabled: true    
+    
 

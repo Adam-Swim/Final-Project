@@ -13,6 +13,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.core.ParameterizedTypeReference;
 import com.watchdog.watchdog.entity.Watchdog;
 import com.watchdog.watchdog.entity.WatchdogModel;
@@ -23,11 +24,11 @@ import com.watchdog.watchdog.entity.WatchdogModel;
 
 @ActiveProfiles("test")
 
-//@Sql(
-//    scripts = {
-//        "classpath:/schema.sql",
-//        "classpath:/data.sql"
-//    })
+@Sql(
+    scripts = {
+        "classpath:/schema.sql",
+        "classpath:/data.sql"
+    })
 
 
 
@@ -78,11 +79,11 @@ class FetchWatchdogTest {
     List<Watchdog> expectedWatchdogs = new ArrayList<>();
     
     Watchdog watchdog1 = new Watchdog(null, "BULLDOG", 9, 1650,
-        "Bulldog solar mobile light tower", new BigDecimal("49900.00"));
+        "Bulldog solar mobile light tower", new BigDecimal("49900.00"), WatchdogModel.BULLDOG);
     Watchdog watchdog2 = new Watchdog(null, "DOBERMAN", 9, 2200,
-        "Doberman solar mobile light tower", new BigDecimal("59900.00"));
+        "Doberman solar mobile light tower", new BigDecimal("59900.00"), WatchdogModel.DOBERMAN);
     Watchdog watchdog3 = new Watchdog(null, "POINTER", 9, 1650,
-        "Pointer solar mobile communications tower", new BigDecimal("59900.00"));
+        "Pointer solar mobile communications tower", new BigDecimal("59900.00"), WatchdogModel.POINTER);
     
     expectedWatchdogs.add(watchdog1);
     expectedWatchdogs.add(watchdog2);
