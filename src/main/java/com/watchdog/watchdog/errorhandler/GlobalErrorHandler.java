@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-import jakarta.validation.ConstraintViolationException;
+import javax.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 
 @RestControllerAdvice
@@ -45,13 +45,13 @@ public class GlobalErrorHandler {
    * @param webRequest
    * @return
    */
-//  @ExceptionHandler(ConstraintViolationException.class)
-//  @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-//  public Map<String, Object> handleConstraintViolationException(
-//      ConstraintViolationException e, WebRequest webRequest) {
-//    return createExceptionMessage(e, HttpStatus.BAD_REQUEST, webRequest, 
-//        LogStatus.MESSAGE_ONLY);
-//  }
+  @ExceptionHandler(ConstraintViolationException.class)
+  @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+  public Map<String, Object> handleConstraintViolationException(
+      ConstraintViolationException e, WebRequest webRequest) {
+    return createExceptionMessage(e, HttpStatus.BAD_REQUEST, webRequest, 
+        LogStatus.MESSAGE_ONLY);
+  }
   
   /**
    * 
