@@ -17,12 +17,16 @@ import com.watchdog.watchdog.entity.Order;
 import com.watchdog.watchdog.entity.Watchdog;
 import com.watchdog.watchdog.entity.WatchdogModel;
 import com.watchdog.watchdog.errorhandler.AccessoryNotFoundException;
+import com.watchdog.watchdog.repository.CustomerRepository;
 
 @Component
 public class DefaultWatchdogOrderDao implements WatchdogOrderDao {
   
   @Autowired
   private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+  
+  @Autowired
+  private CustomerRepository customerRepository;
   
   private static class SqlParams {
     String sql;
@@ -128,8 +132,8 @@ public class DefaultWatchdogOrderDao implements WatchdogOrderDao {
    // @formatter:off
     return Order.builder()
         .orderPk(orderPK)
-        .customerId(customer.getCustomerId())
-        .watchdogId(watchdog.getWatchdogId())
+        .customer(customer)
+        .watchdog(watchdog)
         .totalPrice(price)
         .accessories(accessories)
         .build();

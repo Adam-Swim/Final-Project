@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Builder
@@ -32,6 +31,7 @@ public class Watchdog {
   @Column(name = "watchdog_model")
   private WatchdogModel watchdogModel;
   
+  
   public Watchdog(
       // @formatter:off
       Long watchdogPK,
@@ -48,6 +48,7 @@ public class Watchdog {
     this.panelWatts = panelWatts;
     this.description = description;
     this.price = price;
+    this.watchdogModel = watchdogModel;
   }
   
   public Watchdog() {

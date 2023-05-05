@@ -1,15 +1,20 @@
 package com.watchdog.watchdog.controller;
 
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import com.watchdog.watchdog.entity.Order;
 import com.watchdog.watchdog.entity.Watchdog;
 import com.watchdog.watchdog.entity.WatchdogModel;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -42,23 +47,16 @@ public interface WatchdogSalesController {
              responseCode = "500", 
              description = "An unplanned error occurred.", 
              content = @Content(mediaType = "application/json"))
-     },
-     parameters = {
-       @Parameter(
-           name = "model", 
-           allowEmptyValue = false, 
-           required = false, 
-           description = "The model name (i.e., 'POINTER')"),
-      
-
      }
      
   )
   
   @GetMapping
   @ResponseStatus(code = HttpStatus.OK)
-  List<Watchdog> fetchWatchdogs(@RequestParam WatchdogModel model, 
-                                @RequestParam String description);
-  
+  List<Watchdog> fetchWatchdogs(@RequestParam WatchdogModel model);
+ 
+ @PutMapping("/orders/{id}")
+ public ResponseEntity<Order> updateOrder(@PathVariable(value = "id") Long orderId, @Valid @RequestBody Order orderDetails);
+ 
 
 }

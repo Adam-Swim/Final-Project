@@ -90,6 +90,21 @@ public class GlobalErrorHandler {
     return createExceptionMessage(e, HttpStatus.NOT_FOUND,
         webRequest, LogStatus.MESSAGE_ONLY);
   }
+  /**
+   * 
+   * @param e
+   * @param webRequest
+   * @return
+   */
+  @ExceptionHandler(ResourceNotFoundException.class)
+  @ResponseStatus(code = HttpStatus.NOT_FOUND)
+  public Map<String, Object> handleResourceNotFoundException(
+      ResourceNotFoundException e, WebRequest webRequest) {
+    return createExceptionMessage(e, HttpStatus.NOT_FOUND, webRequest, LogStatus.MESSAGE_ONLY);
+  }
+  
+  
+  
 /**
  * 
  * @param e

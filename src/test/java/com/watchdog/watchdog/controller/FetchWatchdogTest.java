@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.core.ParameterizedTypeReference;
 import com.watchdog.watchdog.entity.Watchdog;
 import com.watchdog.watchdog.entity.WatchdogModel;
@@ -27,8 +28,9 @@ import com.watchdog.watchdog.entity.WatchdogModel;
 @Sql(
     scripts = {
         "classpath:/watchdog_schema.sql",
-        "classpath:/watchdog_data.sql"
-    })
+        "classpath:/watchdog_data.sql"},
+        config = @SqlConfig(encoding = "utf-8"))
+    
 
 
 
